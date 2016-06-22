@@ -1,20 +1,24 @@
-(function( {
-  'use strict'
+(function() {
+  'use strict';
 
   angular
-  .module('mutantApp.auth')
-  .config(configFunction);
+    .module('mutantApp.auth')
+    .config(configFunction);
 
-  configFunction.$inject=['$stateProvider'];
+  configFunction.$inject = ['$stateProvider'];
 
   function configFunction($stateProvider) {
     $stateProvider.state('register', {
       url: '/register',
-      templateURL: 'app/auth/register.html'
+      templateUrl: 'app/auth/register.html',
       controller: 'AuthController',
-      
+      controllerAs: 'vm'
     });
-
+    $stateProvider.state('login', {
+      url: '/login',
+      templateUrl: 'app/auth/login.html',
+      controller: 'AuthController',
+      controllerAs: 'vm'
+    });
   }
-
 })();
