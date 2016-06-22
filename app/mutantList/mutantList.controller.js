@@ -5,12 +5,19 @@
     .module('mutantApp.mutantList')
     .controller('MutantListController', MutantListController);
 
-  function MutantListController() {
+  MutantListController.$inject=['$firebaseArray'];
+
+  function MutantListController($firebaseArray) {
     var vm = this;
+    var mutantsRef = firebase.database().ref().child('mutants');
+    var textsRef = firebase.database().ref().child('texts');
 
     vm.addMutant = addMutant;
-    vm.mutants = ['deadpool', 'nightcrawler', 'gambit'];
+    vm.mutants = $firebaseArray(mutantsRef);
     vm.newMutant = new Mutant();
+    vm.deleteMutant = deleteMutant;
+    vm.toggleComplete = toggleComplete;
+    vm.sendText = sendText;
 
 
     function Mutant() {
@@ -22,7 +29,27 @@
     }
 
     function addMutant() {
-      vm.mutants.push(vm.newMutant);
+      vm.mutants.$add(vm.newMutant);
+      vm.newMutant = new Mutant();
+    }
+
+    function deleteMutant(mutant) {
+      vm.mutants.$remove(mutant);
+    }
+
+    function toggleComplete(mutant) {
+      vm.mutants.$save(mutant);
+    }
+
+    function sendText(mutant) {
+      var newText = {
+        name: mutant.name,
+        topic: mutant.topic,
+        phoneNumber: mutant.phone
+      };
+      textsRef.push(newText);
+      mutant.notified = true;
+      vm.mutants.$save(mutant);
     }
   }
 })();
