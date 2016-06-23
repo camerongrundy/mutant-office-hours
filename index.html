@@ -8,19 +8,19 @@
   </head>
   <body>
 
-    <div class="top-bar" id="main-menu">
-     <div class="top-bar-left">
-       <ul class="dropdown menu" data-dropdown-menu>
-         <li class="menu-text">Mutant School</li>
-       </ul>
-     </div>
-     <div class="top-bar-right">
-       <ul class="menu" data-responsive-menu="drilldown medium-dropdown">
-         <li><a ui-sref="login">Log in</a></li>
-         <li><a href="#">Log out</a></li>
-       </ul>
-     </div>
-   </div>
+    <div ng-controller="AuthController as vm" class="top-bar" id="main-menu">
+      <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+          <li><a ui-sref="home" class="menu-text" >Mutant School</a></li>
+        </ul>
+      </div>
+      <div class="top-bar-right">
+        <ul class="menu" data-responsive-menu="drilldown medium-dropdown">
+          <li><a ui-sref="login">Log in</a></li>
+          <li><a href="#" ng-click="vm.logout()">Log out</a></li>
+        </ul>
+      </div>
+    </div>
 
     <div ui-view class="row" id="main"></div>
 
@@ -40,8 +40,11 @@
     <script src="app/auth/config.route.js"></script>
     <script src="app/auth/auth.controller.js"></script>
 
-    <!-- Core Module -->
+    <!-- Core module -->
     <script src="app/core/core.module.js"></script>
+    <script src="app/core/mutant.service.js"></script>
+    <script src="app/core/firebaseData.service.js"></script>
+    <script src="app/core/textMessage.service.js"></script>
 
     <!-- Home module -->
     <script src="app/home/home.module.js"></script>

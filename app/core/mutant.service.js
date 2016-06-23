@@ -1,19 +1,21 @@
-(function (){
-  'use strict'
+(function() {
+  'use strict';
 
   angular
-  .module('mutantApp.core')
-  .factory('mutantService', mutantService)
+    .module('mutantApp.core')
+    .factory('mutantService', mutantService);
 
-  function mutantService() {
+  mutantService.$inject = ['$firebaseArray', 'firebaseDataService'];
+
+  function mutantService($firebaseArray, firebaseDataService) {
     var service = {
-    Mutant: Mutant,
-  };
+      Mutant: Mutant,
+      mutants: $firebaseArray(firebaseDataService.mutants),
+    };
 
     return service;
 
-    ///////////////////
-
+    ///////////////
 
     function Mutant() {
       this.name = '';
