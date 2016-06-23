@@ -19,7 +19,6 @@
     vm.toggleComplete = toggleComplete;
     vm.sendText = sendText;
 
-
     function Mutant() {
       this.name = '';
       this.phone = '';
@@ -51,5 +50,6 @@
       mutant.notified = true;
       vm.mutants.$save(mutant);
     }
+
   }
 })();
