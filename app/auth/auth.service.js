@@ -11,6 +11,7 @@
     var auth = $firebaseAuth();
 
     var service = {
+      auth: auth,
       register: register,
       login: login,
       logout: logout,
@@ -32,7 +33,8 @@
     function logout() {
       auth.$signOut();
     }
-    funtion isLoggedIn() {
+
+    function isLoggedIn() {
       return auth.$getAuth();
     }
   }

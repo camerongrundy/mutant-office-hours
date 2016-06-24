@@ -16,8 +16,8 @@
       </div>
       <div class="top-bar-right">
         <ul class="menu" data-responsive-menu="drilldown medium-dropdown">
-          <li><a ui-sref="login">Log in</a></li>
-          <li><a href="#" ng-click="vm.logout()">Log out</a></li>
+          <li><a ui-sref="login" ng-show="!vm.isLoggedIn()">Log in</a></li>
+          <li><a href="#" ng-click="vm.logout()" ng-show="vm.isLoggedIn()">Log out</a></li>
         </ul>
       </div>
     </div>
@@ -50,6 +50,9 @@
     <!-- Home module -->
     <script src="app/home/home.module.js"></script>
     <script src="app/home/config.route.js"></script>
+
+    <!-- Layout module -->
+    <script src="app/layout/layout.module.js"></script>
 
     <!-- mutantList module -->
     <script src="app/mutantList/mutantList.module.js"></script>
