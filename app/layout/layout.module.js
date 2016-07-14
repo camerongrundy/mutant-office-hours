@@ -1,7 +1,5 @@
-(function (){
-  'use strict'
+(function() {
+  'use strict';
 
-  angular
-    .module('mutantApp.layout', []);
-
+  angular.module('mutantApp.layout', []);
 })();
